@@ -8,6 +8,7 @@ import Produtos from './pages/Produtos';
 import Produto from './pages/Produto';
 import Erro from './pages/Erro';
 import Header from './components/Header';
+import Cadastro from './pages/Cadastro';
 
 
 
@@ -26,6 +27,7 @@ function RoutesApp(){
                 <Route path='/login' element={ <Login/> } />
                 <Route path='/produtos' element={ <Produtos/> } />
                 <Route path='/produto/:id' element={ <Produto/> } />
+                <Route path='/cadastro' element= { <Cadastro/> } />
 
                 
                 <Route path='*' element={<Erro/>} />
