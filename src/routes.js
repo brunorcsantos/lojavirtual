@@ -9,6 +9,7 @@ import Produto from './pages/Produto';
 import Erro from './pages/Erro';
 import Header from './components/Header';
 import Cadastro from './pages/Cadastro';
+import Endereco from './pages/Endereco';
 
 
 
@@ -28,6 +29,7 @@ function RoutesApp(){
                 <Route path='/produtos' element={ <Produtos/> } />
                 <Route path='/produto/:id' element={ <Produto/> } />
                 <Route path='/cadastro' element= { <Cadastro/> } />
+                <Route path='/endereco' element= { <Endereco/> } />
 
                 
                 <Route path='*' element={<Erro/>} />
