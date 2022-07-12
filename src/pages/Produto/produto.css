@@ -1,0 +1,13 @@
+.produto-info{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: block;
+}
+
+.tabela-produto{
+    border: solid;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+

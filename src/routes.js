@@ -24,7 +24,7 @@ function RoutesApp(){
             <Routes>
                 <Route path="/" element={ <Home/> } />
                 <Route path='/anuncios' element={ <Anuncios/> } />
-                <Route path='/anuncio/:id' element={ <Anuncio/> } />
+                <Route path='/anuncio/:_id_anuncio' element={ <Anuncio/> } />
                 <Route path='/login' element={ <Login/> } />
                 <Route path='/produtos' element={ <Produtos/> } />
                 <Route path='/produto/:id' element={ <Produto/> } />

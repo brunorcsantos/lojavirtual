@@ -34,10 +34,10 @@ function Footer(){
                         <h4>Siga-nos</h4>
                         <div className="social-links">
                            <div>
-                                <a href="https://pt-br.facebook.com/"><i class="fab fa-facebook-f"/></a>
-                                <a href="https://twitter.com/"><i class="fab fa-twitter"/></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"/></a>
-                                <a href="https://br.linkedin.com/"><i class="fab fa-linkedin"/></a>
+                                <a href="https://pt-br.facebook.com/"><i className="fab fa-facebook-f"/></a>
+                                <a href="https://twitter.com/"><i className="fab fa-twitter"/></a>
+                                <a href="https://www.instagram.com/"><i className="fab fa-instagram"/></a>
+                                <a href="https://br.linkedin.com/"><i className="fab fa-linkedin"/></a>
                             </div>
                         </div>
                     </div>
