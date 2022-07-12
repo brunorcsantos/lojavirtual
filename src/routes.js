@@ -9,6 +9,7 @@ import Produto from './pages/Produto';
 import Erro from './pages/Erro';
 import Header from './components/Header';
 import Cadastro from './pages/Cadastro';
+import Footer from './components/Footer/footer';
 
 
 
@@ -32,6 +33,7 @@ function RoutesApp(){
                 
                 <Route path='*' element={<Erro/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }
