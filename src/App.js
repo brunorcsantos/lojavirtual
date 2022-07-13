@@ -1,10 +1,11 @@
 import RoutesApp from './routes';
+import Button from '@material-ui/core/Button';
 
 
 function App() {
   return (
     <div className="app">
-      <RoutesApp/>
+      <Button variant="contained">Hello World</Button>;
     </div>
   );
 }
