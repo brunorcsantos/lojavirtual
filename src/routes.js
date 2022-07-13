@@ -7,12 +7,9 @@ import Anuncio from './pages/Anuncio';
 import Produtos from './pages/Produtos';
 import Produto from './pages/Produto';
 import Erro from './pages/Erro';
-import Header from './components/Header';
+import Header from './common/header/Header';
 import Cadastro from './pages/Cadastro';
 import Endereco from './pages/Endereco';
-
-
-
 
 
 
