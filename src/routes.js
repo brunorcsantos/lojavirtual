@@ -11,7 +11,11 @@ import Header from './components/Header';
 import Cadastro from './pages/Cadastro';
 import Footer from './components/Footer/footer';
 
+const Private = ({ Item }) => {
+    const signed = false;
 
+    return signed > 0? <Item /> : <Login />;
+};
 
 
 
@@ -29,6 +33,7 @@ function RoutesApp(){
                 <Route path='/produtos' element={ <Produtos/> } />
                 <Route path='/produto/:id' element={ <Produto/> } />
                 <Route path='/cadastro' element= { <Cadastro/> } />
+                <Route path='/perfil' element={<Private Item={Home} />} />
 
                 
                 <Route path='*' element={<Erro/>} />

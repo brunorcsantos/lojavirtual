@@ -1,6 +1,7 @@
 import './login.css';
 import { useEffect, useState } from 'react';
 import logo from '../../assets/carrinho.png';
+import api from '../../services/api';
 
 function Login(){
   const [email, setEmail] = useState('');
@@ -8,8 +9,14 @@ function Login(){
   
 
   function handleCallbackResponse(response) {
-    console.log(response)
+    api.post("/login/google/" + String(response.credential));
     localStorage.setItem("Bearer", response.credential)
+  }
+
+  function handleCallbackOurResponse(email, password) {
+    let response = api.post("/login", {email: email, senha: password});
+    localStorage.setItem("Bearer", response)
+    console.log(response)
   }
 
   useEffect(() => {
@@ -23,6 +30,10 @@ function Login(){
       {type: "icon", theme: "filled_black", shape: "pill"}
     )
   });
+
+
+
+
   return(
     <div className='container-center'>
       <div className='login'>
@@ -33,7 +44,7 @@ function Login(){
             <h1>Entrar</h1>
             <input type="text" placeholder="email@email.com"/>
             <input type="password" placeholder="********"/>
-            <button type='submit'>Acessar</button>
+            <button type='submit' onClick={handleCallbackOurResponse(email, password)}>Acessar</button>
           </form>
           <div id='signInDiv'/>
       </div>
