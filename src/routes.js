@@ -10,6 +10,7 @@ import Erro from './pages/Erro';
 import Header from './common/header/Header';
 import Cadastro from './pages/Cadastro';
 import Endereco from './pages/Endereco';
+import Cart from './pages/Endereco';
 
 
 
@@ -27,6 +28,7 @@ function RoutesApp(){
                 <Route path='/produto/:id' element={ <Produto/> } />
                 <Route path='/cadastro' element= { <Cadastro/> } />
                 <Route path='/endereco' element= { <Endereco/> } />
+                <Route path='/cart' element= { <cart/> } />
 
                 
                 <Route path='*' element={<Erro/>} />
