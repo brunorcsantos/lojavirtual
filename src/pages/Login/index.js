@@ -7,17 +7,23 @@ function Login(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
+  
+  
 
   function handleCallbackResponse(response) {
     api.post("/login/google/" + String(response.credential));
     localStorage.setItem("Bearer", response.credential)
   }
 
-  function handleCallbackOurResponse(email, password) {
-    let response = api.post("/login", {email: email, senha: password});
-    localStorage.setItem("Bearer", response)
-    console.log(response)
+  function handleLogin(event){
+    api.post("/login", {email: email, password: password})
+    console.log(email, password)
+    event.preventDefault();
   }
+
+  
+
+  
 
   useEffect(() => {
     /*global google */
@@ -42,9 +48,9 @@ function Login(){
         </div>
           <form>
             <h1>Entrar</h1>
-            <input type="text" placeholder="email@email.com"/>
-            <input type="password" placeholder="********"/>
-            <button type='submit' onClick={handleCallbackOurResponse(email, password)}>Acessar</button>
+            <input type="email" placeholder="email@email.com" value={email} onChange={(e)=> [setEmail(e.target.value)]}/>
+            <input type="password" placeholder="********" value={password} onChange={(e)=> [setPassword(e.target.value)]}/>
+            <button type='submit' onClick={handleLogin}>Acessar</button>
           </form>
           <div id='signInDiv'/>
       </div>
