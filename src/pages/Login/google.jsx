@@ -1,5 +1,0 @@
-const googleLogin = () => {
-    return(
-        
-    )
-}
