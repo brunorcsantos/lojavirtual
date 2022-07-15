@@ -12,6 +12,7 @@ import Cadastro from './pages/Cadastro';
 import Endereco from './pages/Endereco';
 import Cart from './pages/Endereco';
 import Footer from './common/footer/Footer';
+import Perfil from './pages/Perfil/perfil';
 
 
 
@@ -29,7 +30,8 @@ function RoutesApp(){
                 <Route path='/produto/:id' element={ <Produto/> } />
                 <Route path='/cadastro' element= { <Cadastro/> } />
                 <Route path='/endereco' element= { <Endereco/> } />
-                <Route path='/cart' element= { <cart/> } />
+                <Route path='/carrinho' element= { <cart/> } />
+                <Route path='/perfil' element= { <Perfil/> } />
 
                 
                 <Route path='*' element={<Erro/>} />
