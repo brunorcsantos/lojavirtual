@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/lobtec_sem-tagline_posi_RGB_148x40.png';
 import { Link } from 'react-router-dom'
 
 const Search = ({ CartItem }) => {

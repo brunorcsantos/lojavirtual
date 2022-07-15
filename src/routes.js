@@ -11,6 +11,7 @@ import Header from './common/header/Header';
 import Cadastro from './pages/Cadastro';
 import Endereco from './pages/Endereco';
 import Cart from './pages/Endereco';
+import Footer from './common/footer/Footer';
 
 
 
@@ -33,6 +34,7 @@ function RoutesApp(){
                 
                 <Route path='*' element={<Erro/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }
