@@ -43,10 +43,10 @@ function Anuncios(){
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Link to="/anuncios/:id_produto">
+                            
                             <Button size="small">R${anuncio.preco}</Button>
-                            </Link>
-                            <Link to={`/anuncios/${anuncio.id}`}>
+                            
+                            <Link to={`/anuncios/${anuncio._id}`}>
                             <Button size="small">Saiba mais</Button>
                             </Link>
                         </CardActions>

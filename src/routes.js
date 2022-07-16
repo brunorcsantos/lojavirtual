@@ -24,10 +24,10 @@ function RoutesApp(){
             <Routes>
                 <Route path="/" element={ <Home/> } />
                 <Route path='/anuncios' element={ <Anuncios/> } />
-                <Route path='/anuncio/:id' element={ <Anuncio/> } />
+                <Route path='/anuncios/:id_anuncio' element={ <Anuncio/> } />
                 <Route path='/login' element={ <Login/> } />
                 <Route path='/produtos' element={ <Produtos/> } />
-                <Route path='/produto/:id' element={ <Produto/> } />
+                <Route path='/produtos/:id_produto' element={ <Produto/> } />
                 <Route path='/cadastro' element= { <Cadastro/> } />
                 <Route path='/endereco' element= { <Endereco/> } />
                 <Route path='/carrinho' element= { <cart/> } />
