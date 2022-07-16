@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import  api  from '../../services/api';
 import * as React from 'react';
 import Card from '@mui/material/Card';
@@ -33,7 +34,7 @@ function Produtos(){
                         <CardMedia
                             component="img"
                             height="140"
-                            image="/static/images/cards/contemplative-reptile.jpg"
+                            image="https://autolivraria.com.br/bc/wp-content/uploads/2016/07/Chevrolet-Prisma-01.jpg"
                             alt="green iguana"
                         />
                         <CardContent>
@@ -45,8 +46,12 @@ function Produtos(){
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small">{produto.categoria}</Button>
+                            <Link to="/anuncios/:id_produto">
+                            <Button size="small">Anuncios</Button>
+                            </Link>
+                            <Link to="/produto/:id_produto">
                             <Button size="small">Saiba mais</Button>
+                            </Link>
                         </CardActions>
                     </Card>
                 )
