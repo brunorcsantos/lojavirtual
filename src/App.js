@@ -1,10 +1,13 @@
 import RoutesApp from './routes';
+import AuthProvider from './contexts/Auth';
 
 
 function App() {
   return (
     <div className="app">
-      <RoutesApp/>
+      <AuthProvider>
+        <RoutesApp/>
+      </AuthProvider>
     </div>
   );
 }
