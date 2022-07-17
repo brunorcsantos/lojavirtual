@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import api from '../../services/api'
 
 function Copyright() {
   return (
@@ -47,6 +48,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [nome, setNome] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [res, setRes] = useState(null);
+
+  async function createUsuario(){
+    let usuario = {
+      nome: nome + ' ' + lastName,
+      email: email,
+      senha: senha,
+    }
+
+    await cadastrarUsuario(usuario);
+  }
+
+  async function cadastrarUsuario(usuario){
+    await api
+      .post("usuarios", usuario)
+      .then((response) => setRes(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+        alert('error:  ' + err);
+      });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -69,6 +95,7 @@ export default function SignUp() {
                 fullWidth
                 id="firstName"
                 label="Primeiro Nome"
+                
                 autoFocus
               />
             </Grid>
@@ -81,6 +108,7 @@ export default function SignUp() {
                 label="Último Nome"
                 name="lastName"
                 autoComplete="lname"
+                
               />
             </Grid>
             <Grid item xs={12}>
@@ -92,6 +120,7 @@ export default function SignUp() {
                 label="Endereço de E-mail"
                 name="email"
                 autoComplete="email"
+                
               />
             </Grid>
             <Grid item xs={12}>
@@ -104,6 +133,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                
               />
             </Grid>
             <Grid item xs={12}>
@@ -119,6 +149,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick= {createUsuario}
           >
             Entrar
           </Button>

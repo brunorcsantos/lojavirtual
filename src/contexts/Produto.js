@@ -1,4 +1,3 @@
-
 import { useState, createContext } from 'react';
 
 
@@ -9,11 +8,11 @@ function ProdutoProvider({children}){
   const [anuncio, setAnuncio] = useState(null);
 
   return(
-    <UserContext.Provider value={{ alunos, setAlunos, qtdAlunos }}>
+    <ProdutoContext.Provider value={{ produto, setProduto,  anuncio, setAnuncio }}>
       {children}
-    </UserContext.Provider>
+    </ProdutoContext.Provider>
   )
 }
 
-export default UserProvider;
+export default ProdutoProvider;
 
