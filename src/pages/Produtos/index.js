@@ -8,12 +8,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ProdutoProvider from '../../contexts/Produto'
+import { ProdutoContext } from '../../contexts/Produto';
 
 
 
 
 function Produtos(){
     const [produtos, setProdutos] = useState([]);
+    const {setProduto} = React.useContext(ProdutoContext);
     
 
     useEffect(() => {
@@ -30,7 +33,7 @@ function Produtos(){
     return(
         
         <div className='container'>
-            
+            <ProdutoProvider>
             {produtos.map((produto) => {
                 return(
                     <Card sx={{ maxWidth: 345,
@@ -51,6 +54,7 @@ function Produtos(){
                             </Typography>
                         </CardContent>
                         <CardActions>
+                            
                             <Link to={`/anuncios/${produto._id}`}  >
                             <Button size="small">Anuncios</Button>
                             </Link>
@@ -61,7 +65,7 @@ function Produtos(){
                     </Card>
                 )
             })}
-           
+            </ProdutoProvider>
         </div>
         
     )
