@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import api from '../../services/api'
+import { AuthContext } from '../../contexts/Auth';
 
 function Copyright() {
   return (
@@ -53,6 +54,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [res, setRes] = useState(null);
+  
 
   async function createUsuario(){
     let usuario = {

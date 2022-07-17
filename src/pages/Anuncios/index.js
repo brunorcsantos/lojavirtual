@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CardImage from './CardImage';
 
 
 function Anuncios(){
@@ -16,6 +17,7 @@ function Anuncios(){
 
 
 
+    let count = 0;
     useEffect(() => {
         async function getAnuncios() {
             const response = await api.get('/anuncios');
@@ -24,7 +26,7 @@ function Anuncios(){
           getAnuncios();
     
       
-    })
+    }, [count])
     return(
         <div className='container'>
             {anuncios.map((anuncio) => {
@@ -32,12 +34,9 @@ function Anuncios(){
                     <Card sx={{ maxWidth: 345,
                     display: 'inline-block',
                     margin: 4 }} >
-                        <CardMedia
-                            component="img"
-                            height="140"
-                            image="https://autolivraria.com.br/bc/wp-content/uploads/2016/07/Chevrolet-Prisma-01.jpg"
-                            alt="green iguana"
-                        />
+                        
+                        <CardImage  anuncio={anuncio}/>
+
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
                             {anuncio.nome}
