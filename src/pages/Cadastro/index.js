@@ -95,7 +95,8 @@ export default function SignUp() {
                 fullWidth
                 id="firstName"
                 label="Primeiro Nome"
-                
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
                 autoFocus
               />
             </Grid>
@@ -108,6 +109,8 @@ export default function SignUp() {
                 label="Último Nome"
                 name="lastName"
                 autoComplete="lname"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 
               />
             </Grid>
@@ -120,6 +123,8 @@ export default function SignUp() {
                 label="Endereço de E-mail"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 
               />
             </Grid>
@@ -133,6 +138,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
                 
               />
             </Grid>
