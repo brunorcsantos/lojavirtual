@@ -8,10 +8,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ProdutoProvider from '../../contexts/Produto'
+import {UserContext} from '../../contexts/Produto'
 
 
 function Produtos(){
     const [produtos, setProdutos] = useState([]);
+    const [produto, setProduto] = React.useContext(React.useContext);
 
     useEffect(() => {
         async function getProdutos() {
@@ -25,7 +28,9 @@ function Produtos(){
     
 
     return(
+        
         <div className='container'>
+            <ProdutoProvider>
             {produtos.map((produto) => {
                 return(
                     <Card sx={{ maxWidth: 345,
@@ -46,17 +51,19 @@ function Produtos(){
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Link to="/anuncios/:id_produto">
+                            <Link to={`/anuncios/${produto._id}`}  >
                             <Button size="small">Anuncios</Button>
                             </Link>
-                            <Link to="/produto/:id_produto">
-                            <Button size="small">Saiba mais</Button>
-                            </Link>
+                            <Link to={`/produto/${produto._id}`}>
+                            <Button size="small" onClick={setProduto(produto)}>Saiba mais</Button>
+                            </Link> 
                         </CardActions>
                     </Card>
                 )
             })}
+            </ProdutoProvider>
         </div>
+        
     )
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import  api  from '../../services/api';
 import * as React from 'react';
@@ -8,9 +8,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {UserContext} from '../../contexts/Produto'
 
 function Anuncios(){
     const [anuncios, setAnuncios] = useState([]);
+    const [anuncio, setAnuncio] = useContext(UserContext);
+
+
 
     useEffect(() => {
         async function getAnuncios() {
@@ -44,10 +48,10 @@ function Anuncios(){
                         </CardContent>
                         <CardActions>
                             
-                            <Button size="small">R${anuncio.preco}</Button>
+                            <Button size="small">R$: ${anuncio.preco}</Button>
                             
                             <Link to={`/anuncios/${anuncio._id}`}>
-                            <Button size="small">Saiba mais</Button>
+                            <Button size="small" onClick={setAnuncio(anuncio)}>Saiba mais</Button>
                             </Link>
                         </CardActions>
                     </Card>
