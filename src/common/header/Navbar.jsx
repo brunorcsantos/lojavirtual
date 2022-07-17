@@ -24,9 +24,6 @@ const Navbar = () => {
                 <Link to='/perfil'>Perfil</Link>
               </li>
               <li>
-                <Link to='/vendas'>Carteira</Link>
-              </li>
-              <li>
                 <Link to='/compras'>Pedidos</Link>
               </li>
               <li>
