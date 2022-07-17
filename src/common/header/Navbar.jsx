@@ -29,6 +29,12 @@ const Navbar = () => {
               <li>
                 <Link to='/compras'>Pedidos</Link>
               </li>
+              <li>
+                <Link to='/CriarAnuncio'>Anuncie</Link>
+              </li>
+              <li>
+                <Link to='/MeusAnuncios'>Meus Anuncios</Link>
+              </li>
             </ul>
 
             <button className='toggle' onClick={() => setMobileMenu(!MobileMenu)}>

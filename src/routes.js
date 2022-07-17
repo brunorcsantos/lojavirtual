@@ -13,6 +13,10 @@ import Endereco from './pages/Endereco';
 import Cart from './pages/Endereco';
 import Footer from './common/footer/Footer';
 import Perfil from './pages/Perfil/perfil';
+import CriarAnuncio from './pages/CriarAnuncio/CriarAnuncio';
+import MeusAnuncios from './pages/MeusAnuncios/MeusAnuncios';
+
+
 
 
 
@@ -32,6 +36,8 @@ function RoutesApp(){
                 <Route path='/endereco' element= { <Endereco/> } />
                 <Route path='/carrinho' element= { <cart/> } />
                 <Route path='/perfil' element= { <Perfil/> } />
+                <Route path='/CriarAnuncio' element= { <CriarAnuncio/> } />
+                <Route path='/MeusAnuncios' element= { <MeusAnuncios/> } />
 
                 
                 <Route path='*' element={<Erro/>} />

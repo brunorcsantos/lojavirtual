@@ -4,31 +4,31 @@ const Categories = () => {
   const data = [
     {
       cateImg: "./images/category/cat1.png",
-      cateName: "Fashion",
+      cateName: "Roupas & Acessórios",
     },
     {
       cateImg: "./images/category/cat2.png",
-      cateName: "Electronic",
+      cateName: "Electronicos",
     },
     {
       cateImg: "./images/category/cat3.png",
-      cateName: "Cars",
+      cateName: "Veículos",
     },
     {
       cateImg: "./images/category/cat4.png",
-      cateName: "Home & Garden",
+      cateName: "Casa & Jardim",
     },
     {
       cateImg: "./images/category/cat5.png",
-      cateName: "Gifts",
+      cateName: "Presentes",
     },
     {
       cateImg: "./images/category/cat6.png",
-      cateName: "Music",
+      cateName: "Música",
     },
     {
       cateImg: "./images/category/cat7.png",
-      cateName: "Health & Beauty",
+      cateName: "Saúde e Beleza",
     },
     {
       cateImg: "./images/category/cat8.png",
@@ -36,15 +36,15 @@ const Categories = () => {
     },
     {
       cateImg: "./images/category/cat9.png",
-      cateName: "Baby Toys",
+      cateName: "Brinquedos para bebês",
     },
     {
       cateImg: "./images/category/cat10.png",
-      cateName: "Groceries",
+      cateName: "Mantimentos",
     },
     {
       cateImg: "./images/category/cat11.png",
-      cateName: "Books",
+      cateName: "Livros",
     },
   ]
 
