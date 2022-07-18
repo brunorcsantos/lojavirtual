@@ -30,32 +30,37 @@ function AuthProvider({ children }){
   }, [])
 
 
+  
   //Fazendo login do usuario
-  async function signIn(email, password){
+  const login = async function signIn(email, password){
     setLoadingAuth(true);
 
-    await api.post('/usuarios', {emial: email, senha: password})
-    .then(async (responseData)=> {
+    const requisicao = api.post('/login', {email: email, senha: password})
+    .then((responseData)=> {
 
       let data = {
-        id: responseData.id,
-        nome: responseData.nome,
-        email: responseData.user.email,
-        token: responseData.token
+        id: responseData.data.id,
+        nome: responseData.data.nome,
+        email: responseData.data.email,
+        token: responseData.data.token
       };
 
       setUsuario(data);
       storageUser(data);
       setLoadingAuth(false);
+      
       toast.success('Bem vindo de volta!');
 
-
+      return responseData.status;
     })
     .catch((error)=>{
       console.log(error);
       toast.error('Ops algo deu errado!');
       setLoadingAuth(false);
+      return error;
     })
+
+    return requisicao;
 
   }
 
@@ -68,10 +73,10 @@ function AuthProvider({ children }){
     .then( async (response)=>{
 
         let data = {
-          id: response.id,
-          nome: response.nome,
-          email: response.email,
-          token: response.token
+          id: response.data.id,
+          nome: response.data.nome,
+          email: response.data.email,
+          token: response.data.token
         };
 
         setUsuario(data);
@@ -112,7 +117,7 @@ function AuthProvider({ children }){
       loading, 
       signUp,
       signOut,
-      signIn,
+      login,
       loadingAuth,
       setUsuario,
       setAvatar,
