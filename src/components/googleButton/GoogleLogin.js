@@ -1,22 +1,39 @@
 // import './login.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 // import logo from '../../assets/carrinho.png';
 import api from '../../services/api';
 import axios from 'axios';
+import { AuthContext } from '../../contexts/Auth';
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom"
 
 function GoogleLogin(){
+  const {googleLogin} = useContext(AuthContext);
+  let navigate = useNavigate()
 
-  async function handleCallbackResponse(response) {
+
+  async function logar(response){
     console.log(response);
-    let resGoogle = await axios.post('https://oauth2.googleapis.com/tokeninfo?id_token=' + String(response.credential));
-
-    let perfil = {nome: resGoogle.data.name, email: resGoogle.data.email, imagem: resGoogle.data.picture, google: true};
-
-    let resapi = await api.post("/login/google/" + String(response.credential));
-
-    if(resapi.status == 200){
-        localStorage.setItem({token: resapi.data, perifl: perfil});
-    }
+    
+    if(response != undefined){
+        googleLogin(response)
+        .then( (resposta) => {
+          if(resposta == 200){
+            toast.success('Bem vindo de volta!', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            navigate('/');
+          }
+        }).catch((err) => {
+          toast.error('Ops algo deu errado!');
+        })
+      }
   }
 
 
@@ -24,13 +41,13 @@ function GoogleLogin(){
     /*global google */
     google.accounts.id.initialize({
       client_id: "189992687297-pk6qd1toijahev3tgmlsq4nb4sb729ma.apps.googleusercontent.com",
-      callback: handleCallbackResponse
+      callback: logar
     });
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       {type: "icon", theme: "filled_black", shape: "pill"}
     )
-  });
+  }, []);
 
 
   return(

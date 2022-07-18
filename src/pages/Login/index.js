@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import { AuthContext } from '../../contexts/Auth';
 import { useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
+import GoogleLogin from '../../components/googleButton/GoogleLogin'
 
 function Copyright() {
   return (
@@ -57,25 +58,24 @@ export default function SignIn() {
     e.preventDefault();
     
     if(email !== '' && password !== ''){
-      try{
+      
         login(email, password)
         .then( (resposta) => {
           if(resposta == 200){
-            toast.success('Bem vindo de volta!');
+            toast.success('Bem vindo de volta!', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             navigate('/');
           }
-        }
-
-        ).catch((err) => {
+        }).catch((err) => {
           toast.error('Ops algo deu errado!');
         })
-          
-
-          
-
-        }catch(err){
-          console.log(err);
-        }
       }
 
   }
@@ -131,6 +131,7 @@ export default function SignIn() {
           >
             {loadingAuth ? 'Carregando...' : 'Acessar'}
           </Button>
+          <GoogleLogin/>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
