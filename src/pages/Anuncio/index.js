@@ -15,6 +15,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import ImageComponent from "../../components/Image/ImageComponent";
+
 
 const Img = styled("img")({
   margin: "auto",
@@ -83,7 +85,8 @@ function Anuncio() {
       <Grid container justify="flex-start" spacing={2} wrap="wrap">
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img alt="complex" src="/static/images/grid/complex.jpg" />
+           
+            <ImageComponent tipo={'produtos'} id={anuncio.produto}/>
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
