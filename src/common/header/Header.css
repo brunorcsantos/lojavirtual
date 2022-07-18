@@ -1,16 +1,4 @@
-/*------head-----------*/
-.head {
-  background-color: #0f3460;
-  padding: 10px 0;
-  color: #fff;
-}
-.head i {
-  margin-right: 10px;
-}
-.head label {
-  margin-right: 30px;
-  font-size: 13px;
-}
+
 /*------head-----------*/
 /*------search-----------*/
 .search {
@@ -91,6 +79,7 @@
 header {
   height: 8vh;
   box-shadow: -1px 15px 17px -8px rgba(0, 0, 0, 0.1);
+  background-color: #FF6600;
 }
 header ul {
   line-height: 8vh;
@@ -110,6 +99,8 @@ header ul li a:hover {
 .open {
   display: none;
 }
+
+
 
 
 @media (max-width: 768px) {
@@ -163,4 +154,6 @@ header ul li a:hover {
   .header.active {
     height: 10vh;
   }
+
+  
 }

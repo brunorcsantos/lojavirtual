@@ -20,6 +20,7 @@ function Produtos(){
     
 
     useEffect(() => {
+        console.log("Funcionou")
         async function getProdutos() {
             const response = await api.get('/produtos');
             setProdutos(response.data)
@@ -27,7 +28,7 @@ function Produtos(){
           getProdutos();
     
       
-    })
+    },[])
     
 
     return(

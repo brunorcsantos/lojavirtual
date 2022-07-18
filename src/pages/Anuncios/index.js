@@ -17,7 +17,7 @@ function Anuncios(){
 
 
 
-    let count = 0;
+    
     useEffect(() => {
         async function getAnuncios() {
             const response = await api.get('/anuncios');
@@ -26,7 +26,8 @@ function Anuncios(){
           getAnuncios();
     
       
-    }, [count])
+    }, [])
+    
     return(
         <div className='container'>
             {anuncios.map((anuncio) => {
