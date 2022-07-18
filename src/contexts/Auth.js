@@ -30,12 +30,13 @@ function AuthProvider({ children }){
   }, [])
 
 
+  
   //Fazendo login do usuario
-  async function signIn(email, password){
+  const login = async function signIn(email, password){
     setLoadingAuth(true);
 
-    api.post('/login', {email: email, senha: password})
-    .then(async (responseData)=> {
+    const requisicao = api.post('/login', {email: email, senha: password})
+    .then((responseData)=> {
 
       let data = {
         id: responseData.data.id,
@@ -47,15 +48,19 @@ function AuthProvider({ children }){
       setUsuario(data);
       storageUser(data);
       setLoadingAuth(false);
+      
       toast.success('Bem vindo de volta!');
 
-
+      return responseData.status;
     })
     .catch((error)=>{
       console.log(error);
       toast.error('Ops algo deu errado!');
       setLoadingAuth(false);
+      return error;
     })
+
+    return requisicao;
 
   }
 
@@ -112,7 +117,7 @@ function AuthProvider({ children }){
       loading, 
       signUp,
       signOut,
-      signIn,
+      login,
       loadingAuth,
       setUsuario,
       setAvatar,

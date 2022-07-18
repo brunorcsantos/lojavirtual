@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { AuthContext } from '../../contexts/Auth';
 import { useNavigate } from "react-router-dom"
+import { toast } from 'react-toastify';
 
 function Copyright() {
   return (
@@ -47,8 +48,9 @@ export default function SignIn() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {signIn, signed, usuario, loadingAuth} = useContext(AuthContext);
+  const {login, signed, usuario, loadingAuth} = useContext(AuthContext);
   let navigate = useNavigate()
+
   
 
 	async function logar(e){
@@ -56,14 +58,21 @@ export default function SignIn() {
     
     if(email !== '' && password !== ''){
       try{
-        await signIn(email, password)
-          console.log('teste 1');
-
-          if(usuario != null){
-            console.log('teste 2');
+        login(email, password)
+        .then( (resposta) => {
+          if(resposta == 200){
+            toast.success('Bem vindo de volta!');
             navigate('/');
           }
+        }
+
+        ).catch((err) => {
+          toast.error('Ops algo deu errado!');
+        })
           
+
+          
+
         }catch(err){
           console.log(err);
         }
