@@ -34,14 +34,14 @@ function AuthProvider({ children }){
   async function signIn(email, password){
     setLoadingAuth(true);
 
-    await api.post('/usuarios', {emial: email, senha: password})
+    api.post('/login', {email: email, senha: password})
     .then(async (responseData)=> {
 
       let data = {
-        id: responseData.id,
-        nome: responseData.nome,
-        email: responseData.user.email,
-        token: responseData.token
+        id: responseData.data.id,
+        nome: responseData.data.nome,
+        email: responseData.data.email,
+        token: responseData.data.token
       };
 
       setUsuario(data);
@@ -68,10 +68,10 @@ function AuthProvider({ children }){
     .then( async (response)=>{
 
         let data = {
-          id: response.id,
-          nome: response.nome,
-          email: response.email,
-          token: response.token
+          id: response.data.id,
+          nome: response.data.nome,
+          email: response.data.email,
+          token: response.data.token
         };
 
         setUsuario(data);

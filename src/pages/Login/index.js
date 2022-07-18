@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { AuthContext } from '../../contexts/Auth';
+import { useNavigate } from "react-router-dom"
 
 function Copyright() {
   return (
@@ -43,6 +45,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {signIn, signed, usuario, loadingAuth} = useContext(AuthContext);
+  let navigate = useNavigate()
+  
+
+	async function logar(e){
+    e.preventDefault();
+    
+    if(email !== '' && password !== ''){
+      try{
+        await signIn(email, password)
+          console.log('teste 1');
+
+          if(usuario != null){
+            console.log('teste 2');
+            navigate('/');
+          }
+          
+        }catch(err){
+          console.log(err);
+        }
+      }
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -54,7 +81,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={logar}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -65,6 +92,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={ e => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -76,6 +105,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={ e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -87,8 +118,9 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+        
           >
-            Sign In
+            {loadingAuth ? 'Carregando...' : 'Acessar'}
           </Button>
           <Grid container>
             <Grid item xs>
