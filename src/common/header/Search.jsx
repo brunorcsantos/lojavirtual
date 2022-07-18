@@ -19,8 +19,8 @@ const Search = ({ CartItem }) => {
 
           <div className="search-box f_flex">
             <i className = 'fa fa-search'></i>
-            <input type="text" placeholder="Procure um item e entre..."/>
-            <span> Todas as categorias</span>
+            <input type="text" placeholder="Procura o quê hoje na Lobtec?"/>
+            <span>Todas as categorias</span>
           </div>
 
           <div className='icon f_flex width'>
