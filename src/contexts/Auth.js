@@ -19,7 +19,6 @@ function AuthProvider({ children }){
       if(storageUser){
         let user = JSON.parse(storageUser);
         setUsuario(user.usuario);
-        setLoading(false);
       }
   
       setLoading(false);
@@ -62,6 +61,42 @@ function AuthProvider({ children }){
 
     return requisicao;
 
+  }
+
+  const googleLogin = async function signIn(googleResponse){
+    setLoadingAuth(true);
+
+    console.log('Aqui estou');
+
+    const requisicao = api.post('/login/google/' + googleResponse.credential)
+    .then((responseData)=> {
+
+      console.log(responseData.status);
+      console.log(responseData.data);
+
+      let data = {
+        id: responseData.data.id,
+        nome: responseData.data.nome,
+        email: responseData.data.email,
+        token: responseData.data.token
+      };
+
+      setUsuario(data);
+      storageUser(data);
+      setLoadingAuth(false);
+      
+      toast.success('Bem vindo de volta!');
+
+      return responseData.status;
+    })
+    .catch((error)=>{
+      console.log(error);
+      toast.error('Ops algo deu errado!');
+      setLoadingAuth(false);
+      return error;
+    })
+
+    return requisicao;
   }
 
 
@@ -118,6 +153,7 @@ function AuthProvider({ children }){
       signUp,
       signOut,
       login,
+      googleLogin,
       loadingAuth,
       setUsuario,
       setAvatar,

@@ -11,7 +11,7 @@ function CardImage({anuncio}){
     
 
 
-    let count = 0;
+    
     useEffect(() => {
         async function getAnuncios() {
             api.get('/produtos/' + anuncio.produto + '/imagem')
@@ -31,7 +31,7 @@ function CardImage({anuncio}){
             })
           }
           getAnuncios();
-    }, [count])
+    }, [])
 
     return(
         <>
