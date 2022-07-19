@@ -15,7 +15,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+
 import ImageComponent from "../../components/Image/ImageComponent";
+
+
+
 
 
 const Img = styled("img")({
@@ -28,6 +32,7 @@ const Img = styled("img")({
 function Anuncio() {
   const { id_anuncio } = useParams();
   const [value, setValue] = React.useState(2);
+  const [produto, setProduto] = useState({});
   const [anuncio, setAnuncio] = useState({
     _id: "",
     nome: "",
@@ -46,8 +51,6 @@ function Anuncio() {
     ],
   });
 
-  const [produto, setProduto] = useState({});
-
   const theme = useTheme();
 
   useEffect(() => {
@@ -63,6 +66,19 @@ function Anuncio() {
         });
     }
     loadAnuncio();
+    async function loadProduto() {
+      await api
+        .get(`/produtos/${anuncio.produto}`)
+        .then((response) => {
+          setProduto(response.data);
+          console.log(produto);
+        })
+        .catch(() => {
+          console.log("Produto não encontrado");
+        });
+    }
+
+    loadProduto();
   }, []);
 
   //   const addToCart = () =>
@@ -76,7 +92,7 @@ function Anuncio() {
         margin: "auto",
         marginTop: 10,
         marginBottom: 10,
-        maxWidth: 500,
+        maxWidth: "50%",
         flexGrow: 1,
         backgroundColor: (theme) =>
           theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -85,12 +101,15 @@ function Anuncio() {
       <Grid container justify="flex-start" spacing={2} wrap="wrap">
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
-           
+
             <ImageComponent tipo={'produtos'} id={anuncio.produto}/>
+
+            
+
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
+          <Grid item xs={10} container direction="row" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
                 {anuncio.nome}
@@ -99,25 +118,16 @@ function Anuncio() {
                 <Rating name="read-only" value={value} readOnly />
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Id usuário:{anuncio.autor}
+                <strong>Id usuário:</strong>
+                {anuncio.autor}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <strong>Descrição do produto:</strong> {produto.caracteristica}
               </Typography>
             </Grid>
-            <Grid item>
-              <Typography sx={{ cursor: "pointer" }} variant="body2">
-                <IconButton aria-label="cart">
-                  <Link to="/carrinho">
-                    <ShoppingCartIcon sx={{ height: 38, width: 38 }} />
-                  </Link>
-                </IconButton>
-              </Typography>
-            </Grid>
+            
 
-            <Grid item xs>
-              <Typography sx={{ cursor: "pointer" }} variant="body2">
-                <Button variant="contained" endIcon={<AttachMoneyIcon />}>
-                  Comprar
-                </Button>
-              </Typography>
+            <Grid item xs={6}>
               <ButtonGroup
                 variant="outlined"
                 aria-label="outlined button group"
@@ -127,10 +137,17 @@ function Anuncio() {
                 <Button>+</Button>
               </ButtonGroup>
             </Grid>
+            <Grid item xs={6}>
+              <Typography sx={{ cursor: "pointer" }} variant="body2">
+                <Button variant="contained" endIcon={<AttachMoneyIcon />}>
+                  Comprar
+                </Button>
+              </Typography>
+            </Grid>
           </Grid>
 
-          <Grid item>
-            <Typography variant="subtitle1" component="div">
+          <Grid item xs={2}>
+            <Typography variant="subtitle1" component="div" direction="row">
               R${anuncio.preco}
             </Typography>
           </Grid>

@@ -8,8 +8,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import CardImage from './CardImage';
-import ImageComponent from '../../components/Image/ImageComponent'
+import ImageComponent from '../../components/Image/ImageComponent';
+
+
+
+
 
 
 function Anuncios(){
@@ -50,7 +53,7 @@ function Anuncios(){
                         </CardContent>
                         <CardActions>
                             
-                            <Button size="small">R$: ${anuncio.preco}</Button>
+                            <Button size="small">R$ {anuncio.preco}</Button>
                             
                             <Link to={`/anuncios/${anuncio._id}`}>
                             <Button size="small" >Saiba mais</Button>
