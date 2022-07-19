@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useEffect, useContext } from 'react';
 import Anuncio from '../pages/Anuncio';
 import api from '../services/api'
 import { AuthContext } from './Auth';
@@ -8,7 +8,7 @@ export const CarrinhoContext = createContext({});
 
 function CarrinhoProvider({children}){
   const [idUsuario, setIdUsuario] = useState('');
-  const [anuncios, setAnuncios] = useState(null);
+  const [anuncios, setAnuncios] = useState([]);
   const [preco_total, setPrecoTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const { usuario } = useContext(AuthContext);
@@ -16,21 +16,22 @@ function CarrinhoProvider({children}){
   useEffect(()=>{
 
     function loadCarrinho(){
+        if(usuario != null){
+            api.get('/carrinhos/' + usuario.id)
+            .then( (response) => {
 
-        api.get('/carrinhos/' + usuario.id)
-        .then( (response) => {
+                let carrinho = response.data;
 
-            let carrinho = response.data;
-
-            setPrecoTotal(carrinho.preco_total);
-            setIdUsuario(carrinho.comprador);
-            setAnuncios(carrinho.anuncios);
-        } )
-        .catch( (err) => {
-            console.log(err)
-        })
-      
-      setLoading(false);
+                setPrecoTotal(carrinho.preco_total);
+                setIdUsuario(carrinho.comprador);
+                setAnuncios(carrinho.anuncios);
+            } )
+            .catch( (err) => {
+                console.log(err)
+            })
+        
+        setLoading(false);
+        }
     }
     
     loadCarrinho();
@@ -122,9 +123,8 @@ function CarrinhoProvider({children}){
 
 
   return(
-    <CarrinhoContext.Provider value={{
-           anuncio, 
-           setAnuncio,
+    <CarrinhoContext.Provider value={{ 
+           setAnuncios,
            deleteCarrinho,
            pushCarrinho,
            anuncios,
@@ -136,4 +136,4 @@ function CarrinhoProvider({children}){
   )
 }
 
-export default CarrinhoContext;
+export default CarrinhoProvider;

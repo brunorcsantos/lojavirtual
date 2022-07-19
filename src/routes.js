@@ -15,6 +15,7 @@ import Footer from './common/footer/Footer';
 import Perfil from './pages/Perfil/perfil';
 import CriarAnuncio from './pages/CriarAnuncio/CriarAnuncio';
 import MeusAnuncios from './pages/MeusAnuncios/MeusAnuncios';
+import Carrinho from './pages/Carrinho/Carrinho'
 
 
 
@@ -26,6 +27,7 @@ function RoutesApp(){
         <BrowserRouter>
             <Header/>
             <Routes>
+                
                 <Route path="/" element={ <Home/> } />
                 <Route path='/anuncios' element={ <Anuncios/> } />
                 <Route path='/anuncios/:id_anuncio' element={ <Anuncio/> } />
@@ -34,11 +36,11 @@ function RoutesApp(){
                 <Route path='/produtos/:id_produto' element={ <Produto/> } />
                 <Route path='/cadastro' element= { <Cadastro/> } />
                 <Route path='/endereco' element= { <Endereco/> } />
-                <Route path='/carrinho' element= { <cart/> } />
+                
                 <Route path='/perfil' element= { <Perfil/> } />
                 <Route path='/CriarAnuncio' element= { <CriarAnuncio/> } />
                 <Route path='/MeusAnuncios' element= { <MeusAnuncios/> } />
-
+                <Route path='/carrinho' element = {<Carrinho/>}/>
                 
                 <Route path='*' element={<Erro/>} />
             </Routes>
