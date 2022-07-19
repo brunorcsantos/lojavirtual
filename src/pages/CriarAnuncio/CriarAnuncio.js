@@ -1,8 +1,9 @@
 import React from 'react';
 import './CriarAnuncio.css';
-import { Grid, TextField, Button, Card, CardContent, Typography} from '@material-ui/core';
-import {useState} from 'react';
+import { Grid, TextField, MenuItem, Button, Card, CardContent, Typography} from '@material-ui/core';
+import {useState, useEffect} from 'react';
 import api from "../../services/api"
+
 
 
 function App() {
@@ -10,6 +11,17 @@ function App() {
     const [categoria, setCategoria] = useState('')
     const [sub_categoria, setSub_categoria] = useState('')
     const [caracteristica, setCaracteristica] = useState('')
+
+    const [categorias, setCategorias] = useState([])
+
+    useEffect(() => {(
+      async () => {
+        const responseCategorias = await api.get('/categorias');
+            setCategorias(responseCategorias.data)
+      }
+    )()
+  },[]);
+  console.log({categorias})
 
     async function ReqCriarAnuncio(){
 
@@ -41,10 +53,14 @@ function App() {
                   <TextField value={nome} onChange={(e)=> [setNome(e.target.value)]} type="Titulo do Produto" placeholder="Titulo do Produto" label="Titulo do Produto" variant="outlined" fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField value={categoria} onChange={(e)=> [setCategoria(e.target.value)]} type="Categoria" placeholder="Categoria" label="Categoria" variant="outlined" fullWidth required />
+                  <TextField select value={categoria} onChange={(e)=> [setCategoria(e.target.value)]} type="Categoria" placeholder="Categoria" label="Categoria" variant="outlined" fullWidth required   >
+                  { categorias.map(categoria => (
+                   <MenuItem key={categoria.id}value={categoria.id}>
+                      {categoria.nome} </MenuItem>))}
+                  </TextField>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField value={sub_categoria} onChange={(e)=> [setSub_categoria(e.target.value)]} type="sub_categoria" placeholder="sub_categoria" label="sub_categoria" variant="outlined" fullWidth required />
+                  <TextField select value={sub_categoria} onChange={(e)=> [setSub_categoria(e.target.value)]} type="sub_categoria" placeholder="sub_categoria" label="sub_categoria" variant="outlined" fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField value={caracteristica} onChange={(e)=> [setCaracteristica(e.target.value)]} label="Caracteristica" multiline rows={4} placeholder="Caracteristica" variant="outlined" fullWidth required />
